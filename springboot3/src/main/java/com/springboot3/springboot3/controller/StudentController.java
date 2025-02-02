@@ -7,6 +7,7 @@ import io.micrometer.observation.Observation;
 import io.micrometer.observation.ObservationRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,6 +44,13 @@ public class StudentController {
     @GetMapping("get/{id}")
     public Student getById(@PathVariable(value = "id") String id){
         return studentService.getById(id);
+    }
+
+
+
+    @Scheduled(fixedDelay = 1000)
+    public void printHello(){
+        System.out.println("good morning");
     }
 
 }
